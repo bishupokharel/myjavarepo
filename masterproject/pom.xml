@@ -289,6 +289,92 @@
 						</configuration>
 					</plugin>
 					
+					<plugin>
+						<groupId>org.codehaus.cargo</groupId>
+						<artifactId>cargo-maven2-plugin</artifactId>
+						<version>1.1.2</version>
+						<configuration>
+							<type>standalone</type>
+							<container>
+							
+								<containerId>tomcat7x</containerId>
+								
+								<!-- 
+								    <zipUrlInstaller>
+         							 <url>http://a-inet01:8100/apache-tomcat-7.0.25.zip</url>
+     							   </zipUrlInstaller>
+     							-->
+								<artifactInstaller>
+									<groupId>com.bishu</groupId>
+									<artifactId>tomcat7</artifactId>
+									<version>${tomcat.version}</version>
+								</artifactInstaller>
+								<systemProperties>
+									<!-- these get plugged into server.xml -->
+									<server.ip.address>127.0.0.1</server.ip.address>
+									<server.jvm.route>1</server.jvm.route>
+									<server.session.timeout>30</server.session.timeout>
+									<server.syslog.level>WARN</server.syslog.level>
+									<server.proxy.name></server.proxy.name>
+									<server.proxy.port></server.proxy.port>
+									<server.user.database>${project.build.directory}/cargo/installs/tomcat7-${tomcat.version}/conf/tomcat-users.xml</server.user.database>
+								</systemProperties>
+							</container>
+							<configuration>
+								<home>${project.build.directory}/cargo/configurations/tomcat7
+								</home>
+								<configfiles>
+									<configfile>
+										<file>${project.build.directory}/cargo/installs/tomcat7-${tomcat.version}/conf/server.xml
+										</file>
+										<todir>conf</todir>
+									</configfile>
+									<configfile>
+										<file>${project.build.directory}/cargo/installs/tomcat7-${tomcat.version}/conf/tomcat-users.xml
+										</file>
+										<todir>conf</todir>
+									</configfile>
+									<configfile>
+										<file>${project.build.directory}/../config/local/catalina.properties
+										</file>
+										<todir>conf</todir>
+									</configfile>
+									<configfile>
+										<file>${project.build.directory}/../config/local/server.xml
+                                        </file>
+										<todir>conf</todir>
+									</configfile>
+									<configfile>
+										<file>${project.build.directory}/../config/local/setenv.bat
+                                        </file>
+										<todir>bin</todir>
+									</configfile>
+									<configfile>
+										<file>${project.build.directory}/../config/local/setenv.sh
+                                        </file>
+										<todir>bin</todir>
+									</configfile>
+									<files>
+										<file>${project.build.directory}/../config/local/log4j.properties
+										</file>
+										<todir>../../installs/tomcat7-${tomcat.version}/lib</todir>
+										<tofile>log4j.properties</tofile>
+										<overwrite>true</overwrite>
+									</files>
+								</configfiles>
+								
+								<properties>
+									<cargo.jvmargs>
+										-Xdebug
+										-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${debugger.port}
+										-Xnoagent
+										-Djava.compiler=NONE
+									</cargo.jvmargs>
+								</properties>
+							</configuration>
+						</configuration>
+					</plugin>
+					
 					
 					
 				<plugin>
