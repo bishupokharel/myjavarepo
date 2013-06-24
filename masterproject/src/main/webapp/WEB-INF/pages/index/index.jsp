@@ -3,7 +3,7 @@
 
 
 		<div id="leftcolumn">
-			<div class="innertube">Left Panel</div>
+		<%@ include file="/WEB-INF/pages/leftMenu.jsp"%>
 		</div>
 
 	<div id="middlecontent">

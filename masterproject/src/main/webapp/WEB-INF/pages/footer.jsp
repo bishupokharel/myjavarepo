@@ -1,6 +1,5 @@
 
 <div id="footer">
-	This is Footer
 </div>
 
 </div>
