@@ -24,5 +24,26 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	
+	
+	<error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/error/error.jsp</location>
+</error-page>
+
+<error-page>
+    <error-code>404</error-code>
+    <location>/errorPage.jsp</location>
+</error-page> 
+
+	<servlet>
+        <servlet-name>HelloWorld</servlet-name>
+        <servlet-class>com.bishu.servlet.testing.HelloWorldServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>HelloWorld</servlet-name>
+        <url-pattern>/HelloWorld</url-pattern>
+    </servlet-mapping>
 
 </web-app>
